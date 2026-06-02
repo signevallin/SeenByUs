@@ -23,8 +23,6 @@ describe("POST /api/guests", () => {
   })
 
   it("returns 400 if name is missing", async () => {
-    ;(prisma.event.findUnique as jest.Mock).mockResolvedValue({ id: "evt1" })
-
     const req = new NextRequest("http://localhost/api/guests", {
       method: "POST",
       body: JSON.stringify({ slug: "abc12345", name: "" }),

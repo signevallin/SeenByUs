@@ -3,7 +3,19 @@ import { NextRequest, NextResponse } from "next/server"
 import { randomUUID } from "crypto"
 
 export async function POST(request: NextRequest) {
-  const { slug, name } = await request.json()
+  let slug: string | undefined
+  let name: string | undefined
+  try {
+    const body = await request.json()
+    slug = body.slug
+    name = body.name
+  } catch {
+    return NextResponse.json({ error: "Ogiltig förfrågan" }, { status: 400 })
+  }
+
+  if (!slug) {
+    return NextResponse.json({ error: "Slug saknas" }, { status: 400 })
+  }
 
   if (!name?.trim()) {
     return NextResponse.json({ error: "Namn saknas" }, { status: 400 })
@@ -26,6 +38,7 @@ export async function POST(request: NextRequest) {
   const response = NextResponse.json({ guestId: guest.id })
   response.cookies.set("sessionToken", guest.sessionToken, {
     httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
     maxAge: 60 * 60 * 24 * 7, // 7 days
     path: "/",
