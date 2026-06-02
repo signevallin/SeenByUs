@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { buildCloudinaryUrl } from "@/lib/transforms"
 import { Style } from "@prisma/client"
 
@@ -28,11 +29,13 @@ export function AlbumGrid({ photos, style }: AlbumGridProps) {
         const url = buildCloudinaryUrl(photo.cloudinaryPublicId, style)
         return (
           <div key={photo.id} className="break-inside-avoid relative group">
-            <img
+            <Image
               src={url}
               alt={`Bild av ${photo.guest.name}`}
               className="w-full rounded-lg"
-              loading="lazy"
+              width={800}
+              height={600}
+              style={{ width: "100%", height: "auto" }}
             />
             <span className="absolute bottom-2 left-2 bg-black/40 text-white text-xs px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">
               {photo.guest.name}

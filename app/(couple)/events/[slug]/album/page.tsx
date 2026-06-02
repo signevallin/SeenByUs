@@ -23,7 +23,7 @@ export default async function AlbumPage({ params }: Props) {
     },
   })
 
-  if (!event || event.userId !== session!.user.id) notFound()
+  if (!session?.user || !event || event.userId !== session.user.id) notFound()
 
   const notYetRevealed = new Date() < new Date(event.revealedAt)
 
