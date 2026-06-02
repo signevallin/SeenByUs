@@ -16,6 +16,7 @@ export function CameraUpload({ slug, eventId, initialCount }: CameraUploadProps)
   const [uploading, setUploading] = useState(false)
   const [error, setError] = useState("")
   const inputRef = useRef<HTMLInputElement>(null)
+  const pendingFileRef = useRef<File | null>(null)
   const router = useRouter()
 
   const remaining = MAX_PHOTOS - count
@@ -23,6 +24,15 @@ export function CameraUpload({ slug, eventId, initialCount }: CameraUploadProps)
 
   async function handleFile(file: File) {
     if (done || uploading) return
+    if (!file.type.startsWith("image/")) {
+      setError("Endast bilder är tillåtna")
+      return
+    }
+    if (file.size > 20_000_000) {
+      setError("Bilden är för stor (max 20 MB)")
+      return
+    }
+    pendingFileRef.current = file
     setUploading(true)
     setError("")
 
@@ -60,6 +70,7 @@ export function CameraUpload({ slug, eventId, initialCount }: CameraUploadProps)
       if (!saveRes.ok) throw new Error("Kunde inte spara bilden")
       const { photoCount } = await saveRes.json()
 
+      pendingFileRef.current = null
       setCount(photoCount)
       if (photoCount >= MAX_PHOTOS) {
         router.push(`/e/${slug}/done`)
@@ -115,7 +126,13 @@ export function CameraUpload({ slug, eventId, initialCount }: CameraUploadProps)
           <div className="mt-4">
             <p className="text-red-400 text-sm">{error}</p>
             <button
-              onClick={() => inputRef.current?.click()}
+              onClick={() => {
+                if (pendingFileRef.current) {
+                  handleFile(pendingFileRef.current)
+                } else {
+                  inputRef.current?.click()
+                }
+              }}
               className="mt-2 text-white text-sm underline"
             >
               Försök igen
