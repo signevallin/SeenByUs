@@ -4,6 +4,7 @@ import { NextRequest } from "next/server"
 jest.mock("@/lib/db", () => ({
   prisma: {
     guest: { findUnique: jest.fn() },
+    event: { findUnique: jest.fn() },
   },
 }))
 
@@ -56,6 +57,9 @@ describe("POST /api/sign-upload", () => {
       id: "g1",
       photoCount: 5,
       eventId: "e1",
+    })
+    ;(prisma.event.findUnique as jest.Mock).mockResolvedValue({
+      revealedAt: new Date(Date.now() + 86400000),
     })
     const res = await POST(makeRequest("sessionToken=valid", { eventId: "e1" }))
     expect(res.status).toBe(200)

@@ -58,6 +58,7 @@ model Photo {
   takenAt            DateTime @default(now())
   createdAt          DateTime @default(now())
 
+  @@unique([cloudinaryPublicId])
   @@index([eventId])
   @@index([guestId])
 }

@@ -7,6 +7,7 @@ jest.mock("@/lib/db", () => ({
       findUnique: jest.fn(),
       update: jest.fn(),
     },
+    event: { findUnique: jest.fn() },
     photo: { create: jest.fn() },
     $transaction: jest.fn(),
   },
@@ -54,6 +55,7 @@ describe("POST /api/photos", () => {
     const txPhotoCreate = jest.fn().mockResolvedValue({ id: "p1" })
     const txGuestUpdate = jest.fn().mockResolvedValue({ photoCount: 4 })
     const txGuestFindUnique = jest.fn().mockResolvedValue({ photoCount: 3 })
+    const txEventFindUnique = jest.fn().mockResolvedValue({ revealedAt: new Date(Date.now() + 86400000) })
 
     ;(prisma.$transaction as jest.Mock).mockImplementation(async (fn) => {
       return fn({
@@ -61,6 +63,7 @@ describe("POST /api/photos", () => {
           findUnique: txGuestFindUnique,
           update: txGuestUpdate,
         },
+        event: { findUnique: txEventFindUnique },
         photo: { create: txPhotoCreate },
       })
     })
