@@ -27,6 +27,8 @@ model Event {
   createdAt  DateTime @default(now())
   guests     Guest[]
   photos     Photo[]
+
+  @@index([userId])
 }
 
 enum Style {
@@ -55,4 +57,7 @@ model Photo {
   cloudinaryPublicId String
   takenAt            DateTime @default(now())
   createdAt          DateTime @default(now())
+
+  @@index([eventId])
+  @@index([guestId])
 }
