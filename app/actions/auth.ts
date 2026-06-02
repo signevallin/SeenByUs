@@ -6,11 +6,11 @@ import bcrypt from "bcryptjs"
 import { AuthError } from "next-auth"
 
 export async function signup(formData: FormData) {
-  const email = formData.get("email") as string
+  const email = (formData.get("email") as string).trim().toLowerCase()
   const password = formData.get("password") as string
-  const name = formData.get("name") as string
+  const name = (formData.get("name") as string).trim()
 
-  if (!email || !password || password.length < 8) {
+  if (!email || !password || !name || password.length < 8) {
     throw new Error("Ogiltiga uppgifter")
   }
 
@@ -24,10 +24,13 @@ export async function signup(formData: FormData) {
 }
 
 export async function login(formData: FormData) {
+  const email = (formData.get("email") as string).trim().toLowerCase()
+  const password = formData.get("password") as string
+
   try {
     await signIn("credentials", {
-      email: formData.get("email"),
-      password: formData.get("password"),
+      email,
+      password,
       redirectTo: "/dashboard",
     })
   } catch (error) {
