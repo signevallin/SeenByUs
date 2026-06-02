@@ -51,6 +51,7 @@ describe("POST /api/sign-upload", () => {
   it("returns signature payload when guest is valid and under limit", async () => {
     process.env.CLOUDINARY_API_KEY = "test-key"
     process.env.CLOUDINARY_CLOUD_NAME = "test-cloud"
+    process.env.CLOUDINARY_API_SECRET = "test-secret"
     ;(prisma.guest.findUnique as jest.Mock).mockResolvedValue({
       id: "g1",
       photoCount: 5,

@@ -38,12 +38,17 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Bildkvoten är slut" }, { status: 403 })
   }
 
+  const apiSecret = process.env.CLOUDINARY_API_SECRET
+  if (!apiSecret) {
+    return NextResponse.json({ error: "Server ej konfigurerad" }, { status: 500 })
+  }
+
   const timestamp = Math.round(Date.now() / 1000)
   const folder = `seenbyus/${eventId}`
 
   const signature = cloudinary.utils.api_sign_request(
     { timestamp, folder },
-    process.env.CLOUDINARY_API_SECRET!
+    apiSecret
   )
 
   return NextResponse.json({
