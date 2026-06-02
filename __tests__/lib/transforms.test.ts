@@ -51,11 +51,11 @@ describe("buildCloudinaryUrl", () => {
 })
 
 describe("buildZipUrl", () => {
-  it("returns a string starting with https", () => {
-    // buildZipUrl calls cloudinary SDK internally — we just verify it returns a URL string
-    // Full integration test done manually
+  it("returns a URL containing the cloud name and transform params", () => {
     const result = buildZipUrl(["img1", "img2"], "disposable")
     expect(typeof result).toBe("string")
     expect(result.startsWith("https")).toBe(true)
+    expect(result).toContain("testcloud")
+    expect(result).toContain("e_sepia")
   })
 })
