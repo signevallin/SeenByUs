@@ -1,6 +1,6 @@
 import { auth } from "@/auth"
 import { prisma } from "@/lib/db"
-import { notFound } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 import { QRCode } from "@/components/QRCode"
 import Link from "next/link"
 
@@ -11,6 +11,7 @@ interface Props {
 export default async function EventPage({ params }: Props) {
   const { slug } = await params
   const session = await auth()
+  if (!session?.user) redirect("/login")
 
   const event = await prisma.event.findUnique({
     where: { slug },
@@ -19,7 +20,7 @@ export default async function EventPage({ params }: Props) {
     },
   })
 
-  if (!event || event.userId !== session!.user.id) notFound()
+  if (!event || event.userId !== session.user.id) notFound()
 
   const guestUrl = `${process.env.NEXT_PUBLIC_URL}/e/${event.slug}`
   const revealed = new Date() >= new Date(event.revealedAt)
@@ -51,6 +52,7 @@ export default async function EventPage({ params }: Props) {
             <a
               href={guestUrl}
               target="_blank"
+              rel="noopener noreferrer"
               className="text-xs text-stone-500 underline break-all"
             >
               {guestUrl}

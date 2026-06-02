@@ -10,16 +10,33 @@ interface QRCodeProps {
 
 export function QRCode({ url, size = 240 }: QRCodeProps) {
   const [dataUrl, setDataUrl] = useState<string>("")
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     QRCodeLib.toDataURL(url, {
       width: size,
       margin: 2,
       color: { dark: "#1c1917", light: "#fafaf9" },
-    }).then(setDataUrl)
+    })
+      .then(setDataUrl)
+      .catch(() => setError(true))
   }, [url, size])
 
-  if (!dataUrl) return <div className="w-60 h-60 bg-stone-100 rounded-lg animate-pulse" />
+  if (error) return (
+    <div
+      style={{ width: size, height: size }}
+      className="bg-stone-100 rounded-lg flex items-center justify-center text-stone-400 text-xs"
+    >
+      Kunde inte generera QR-kod
+    </div>
+  )
+
+  if (!dataUrl) return (
+    <div
+      style={{ width: size, height: size }}
+      className="bg-stone-100 rounded-lg animate-pulse"
+    />
+  )
 
   return (
     <img
