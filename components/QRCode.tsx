@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useEffect, useState } from "react"
 import QRCodeLib from "qrcode"
 
@@ -39,12 +40,13 @@ export function QRCode({ url, size = 240 }: QRCodeProps) {
   )
 
   return (
-    <img
+    <Image
       src={dataUrl}
       alt="QR-kod till event"
       width={size}
       height={size}
       className="rounded-lg"
+      unoptimized
     />
   )
 }
