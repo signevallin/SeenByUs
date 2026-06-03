@@ -1,5 +1,6 @@
 import { auth } from "@/auth"
 import { prisma } from "@/lib/db"
+import { type Event } from "@prisma/client"
 import Link from "next/link"
 
 export default async function DashboardPage() {
@@ -31,7 +32,7 @@ export default async function DashboardPage() {
         )}
 
         <div className="flex flex-col gap-3">
-          {events.map((event) => {
+          {events.map((event: Event) => {
             const revealed = new Date() >= new Date(event.revealedAt)
             return (
               <Link
