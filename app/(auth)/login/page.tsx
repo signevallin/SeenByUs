@@ -11,14 +11,14 @@ export default function LoginPage() {
             name="email"
             type="email"
             placeholder="E-postadress"
-            className="border border-stone-200 rounded-lg px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-stone-900"
+            className="border border-stone-200 rounded-lg px-4 py-3 text-sm text-stone-900 outline-none focus:ring-2 focus:ring-stone-900"
             required
           />
           <input
             name="password"
             type="password"
             placeholder="Lösenord"
-            className="border border-stone-200 rounded-lg px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-stone-900"
+            className="border border-stone-200 rounded-lg px-4 py-3 text-sm text-stone-900 outline-none focus:ring-2 focus:ring-stone-900"
             required
           />
           <button

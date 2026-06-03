@@ -24,7 +24,7 @@ export default function NewEventPage() {
               name="name"
               type="text"
               placeholder="Emma & Olivers bröllop"
-              className="w-full border border-stone-200 rounded-lg px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-stone-900"
+              className="w-full border border-stone-200 rounded-lg px-4 py-3 text-sm text-stone-900 outline-none focus:ring-2 focus:ring-stone-900"
               required
             />
           </div>
@@ -36,7 +36,7 @@ export default function NewEventPage() {
             <input
               name="date"
               type="date"
-              className="w-full border border-stone-200 rounded-lg px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-stone-900"
+              className="w-full border border-stone-200 rounded-lg px-4 py-3 text-sm text-stone-900 outline-none focus:ring-2 focus:ring-stone-900"
               required
             />
           </div>

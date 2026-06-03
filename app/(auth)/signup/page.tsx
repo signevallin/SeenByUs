@@ -11,14 +11,14 @@ export default function SignupPage() {
             name="name"
             type="text"
             placeholder="Ert namn"
-            className="border border-stone-200 rounded-lg px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-stone-900"
+            className="border border-stone-200 rounded-lg px-4 py-3 text-sm text-stone-900 outline-none focus:ring-2 focus:ring-stone-900"
             required
           />
           <input
             name="email"
             type="email"
             placeholder="E-postadress"
-            className="border border-stone-200 rounded-lg px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-stone-900"
+            className="border border-stone-200 rounded-lg px-4 py-3 text-sm text-stone-900 outline-none focus:ring-2 focus:ring-stone-900"
             required
           />
           <input
@@ -26,7 +26,7 @@ export default function SignupPage() {
             type="password"
             placeholder="Lösenord (minst 8 tecken)"
             minLength={8}
-            className="border border-stone-200 rounded-lg px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-stone-900"
+            className="border border-stone-200 rounded-lg px-4 py-3 text-sm text-stone-900 outline-none focus:ring-2 focus:ring-stone-900"
             required
           />
           <button
