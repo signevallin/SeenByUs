@@ -38,14 +38,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Bildkvoten är slut" }, { status: 403 })
   }
 
-  const event = await prisma.event.findUnique({
-    where: { id: guest.eventId },
-    select: { revealedAt: true },
-  })
-  if (!event || new Date() >= new Date(event.revealedAt)) {
-    return NextResponse.json({ error: "Eventet är avslutat" }, { status: 403 })
-  }
-
   const apiSecret = process.env.CLOUDINARY_API_SECRET
   if (!apiSecret) {
     return NextResponse.json({ error: "Server ej konfigurerad" }, { status: 500 })

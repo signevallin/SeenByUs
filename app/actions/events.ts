@@ -13,6 +13,15 @@ function computeRevealedAt(eventDate: Date): Date {
   const reveal = new Date(eventDate)
   reveal.setUTCDate(reveal.getUTCDate() + 1)
   reveal.setUTCHours(8, 0, 0, 0)
+
+  // If computed reveal is already in the past, use tomorrow 08:00 UTC instead
+  if (reveal <= new Date()) {
+    const tomorrow = new Date()
+    tomorrow.setUTCDate(tomorrow.getUTCDate() + 1)
+    tomorrow.setUTCHours(8, 0, 0, 0)
+    return tomorrow
+  }
+
   return reveal
 }
 
