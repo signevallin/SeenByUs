@@ -22,9 +22,9 @@ export default async function EventPage({ params }: Props) {
 
   if (!event || event.userId !== session.user.id) notFound()
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_URL ||
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000")
+  const baseUrl = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : (process.env.NEXT_PUBLIC_URL ?? "http://localhost:3000")
   const guestUrl = `${baseUrl}/e/${event.slug}`
   const revealed = new Date() >= new Date(event.revealedAt)
 
