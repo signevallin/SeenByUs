@@ -46,13 +46,6 @@ export async function POST(request: NextRequest) {
       if (!fresh || fresh.photoCount >= 20) {
         throw new Error("LIMIT_REACHED")
       }
-      const event = await tx.event.findUnique({
-        where: { id: guest.eventId },
-        select: { revealedAt: true },
-      })
-      if (!event || new Date() >= new Date(event.revealedAt)) {
-        throw new Error("EVENT_CLOSED")
-      }
       await tx.photo.create({
         data: {
           cloudinaryPublicId: publicId,
@@ -68,9 +61,6 @@ export async function POST(request: NextRequest) {
   } catch (err) {
     if (err instanceof Error && err.message === "LIMIT_REACHED") {
       return NextResponse.json({ error: "Bildkvoten är slut" }, { status: 403 })
-    }
-    if (err instanceof Error && err.message === "EVENT_CLOSED") {
-      return NextResponse.json({ error: "Eventet är avslutat" }, { status: 403 })
     }
     if ((err as { code?: string }).code === "P2002") {
       return NextResponse.json({ error: "Bilden har redan sparats" }, { status: 409 })

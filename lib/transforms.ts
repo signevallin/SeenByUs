@@ -2,9 +2,12 @@ import { v2 as cloudinary } from "cloudinary"
 import { Style } from "@prisma/client"
 
 const TRANSFORM_PARAMS: Record<Style, string> = {
-  disposable: "e_sepia:20,e_brightness:10,e_contrast:10,e_noise:15",
-  vintage: "e_sepia:55,e_contrast:-10,e_saturation:-25,e_brightness:5",
-  flash: "e_brightness:22,e_contrast:8,e_saturation:-15",
+  // Disposable camera: warm sepia tint, punchy contrast, slight overexposure
+  disposable: "e_sepia:25,e_brightness:12,e_contrast:18,e_saturation:15",
+  // Vintage film: faded Kodak tones, low saturation, lifted shadows
+  vintage: "e_sepia:50,e_brightness:8,e_contrast:-12,e_saturation:-35",
+  // 90s flash: overexposed, desaturated, flat like a point-and-shoot
+  flash: "e_brightness:28,e_contrast:10,e_saturation:-25",
 }
 
 export function getTransformParams(style: Style): string {
@@ -12,7 +15,10 @@ export function getTransformParams(style: Style): string {
 }
 
 export function buildCloudinaryUrl(publicId: string, style: Style): string {
-  const cloud = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+  // NEXT_PUBLIC_ variant is needed if called client-side; fall back to server-side var
+  const cloud =
+    process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ??
+    process.env.CLOUDINARY_CLOUD_NAME
   const params = getTransformParams(style)
   return `https://res.cloudinary.com/${cloud}/image/upload/${params}/${publicId}`
 }
