@@ -29,7 +29,7 @@ describe("getTransformParams", () => {
   })
   it("returns params for bw", () => {
     expect(getTransformParams("bw")).toBe(
-      "e_grayscale,e_contrast:20,e_sharpen:40"
+      "e_saturation:-100,e_contrast:40,e_brightness:-5,e_sharpen:60"
     )
   })
   it("returns params for afterparty", () => {
@@ -64,7 +64,7 @@ describe("buildCloudinaryUrl", () => {
   it("builds correct URL for bw style", () => {
     const url = buildCloudinaryUrl("seenbyus/evt1/img3", "bw")
     expect(url).toBe(
-      "https://res.cloudinary.com/testcloud/image/upload/e_grayscale,e_contrast:20,e_sharpen:40/seenbyus/evt1/img3"
+      "https://res.cloudinary.com/testcloud/image/upload/e_saturation:-100,e_contrast:40,e_brightness:-5,e_sharpen:60/seenbyus/evt1/img3"
     )
   })
 })
