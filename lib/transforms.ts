@@ -2,14 +2,14 @@ import { v2 as cloudinary } from "cloudinary"
 import { Style } from "@prisma/client"
 
 const TRANSFORM_PARAMS: Record<Style, string> = {
-  // Nostalgia — 90s Fujifilm/Kodak: warm, punchy, sharp
-  nostalgia: "e_contrast:40,e_saturation:35,e_brightness:8,e_sharpen:150,e_sepia:15",
-  // Romance — Polaroid: soft, warm, matte, low contrast with vignette
-  romance: "e_contrast:-25,e_saturation:-15,e_brightness:18,e_sepia:25,e_vignette:30",
-  // Classic B&W — Tidlös film: deep blacks, high contrast, sharp
-  bw: "e_grayscale,e_contrast:45,e_sharpen:80,e_vignette:40",
-  // Afterparty — Den rökiga klubben: dark, high contrast, desaturated
-  afterparty: "e_brightness:-25,e_contrast:40,e_saturation:-50,e_sharpen:60,e_vignette:80",
+  // Nostalgia — 90s Fujifilm/Kodak: subtle warmth, punchy but not extreme
+  nostalgia: "e_sepia:18,e_contrast:15,e_saturation:8,e_sharpen:60",
+  // Romance — Polaroid: soft, faded, warm, low contrast
+  romance: "e_sepia:20,e_contrast:-20,e_saturation:-10,e_brightness:10",
+  // Classic B&W — Tidlös film: grayscale, punchy, sharp
+  bw: "e_grayscale,e_contrast:20,e_sharpen:40",
+  // Afterparty — Den rökiga klubben: dark, contrasty, desaturated
+  afterparty: "e_brightness:-15,e_contrast:20,e_saturation:-35",
 }
 
 export function getTransformParams(style: Style): string {

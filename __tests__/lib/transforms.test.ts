@@ -19,22 +19,22 @@ afterEach(() => {
 describe("getTransformParams", () => {
   it("returns params for nostalgia", () => {
     expect(getTransformParams("nostalgia")).toBe(
-      "e_contrast:40,e_saturation:35,e_brightness:8,e_sharpen:150,e_sepia:15"
+      "e_sepia:18,e_contrast:15,e_saturation:8,e_sharpen:60"
     )
   })
   it("returns params for romance", () => {
     expect(getTransformParams("romance")).toBe(
-      "e_contrast:-25,e_saturation:-15,e_brightness:18,e_sepia:25,e_vignette:30"
+      "e_sepia:20,e_contrast:-20,e_saturation:-10,e_brightness:10"
     )
   })
   it("returns params for bw", () => {
     expect(getTransformParams("bw")).toBe(
-      "e_grayscale,e_contrast:45,e_sharpen:80,e_vignette:40"
+      "e_grayscale,e_contrast:20,e_sharpen:40"
     )
   })
   it("returns params for afterparty", () => {
     expect(getTransformParams("afterparty")).toBe(
-      "e_brightness:-25,e_contrast:40,e_saturation:-50,e_sharpen:60,e_vignette:80"
+      "e_brightness:-15,e_contrast:20,e_saturation:-35"
     )
   })
 })
@@ -43,7 +43,7 @@ describe("buildCloudinaryUrl", () => {
   it("builds correct URL for nostalgia without date", () => {
     const url = buildCloudinaryUrl("seenbyus/evt1/img1", "nostalgia")
     expect(url).toBe(
-      "https://res.cloudinary.com/testcloud/image/upload/e_contrast:40,e_saturation:35,e_brightness:8,e_sharpen:150,e_sepia:15/seenbyus/evt1/img1"
+      "https://res.cloudinary.com/testcloud/image/upload/e_sepia:18,e_contrast:15,e_saturation:8,e_sharpen:60/seenbyus/evt1/img1"
     )
   })
 
@@ -64,7 +64,7 @@ describe("buildCloudinaryUrl", () => {
   it("builds correct URL for bw style", () => {
     const url = buildCloudinaryUrl("seenbyus/evt1/img3", "bw")
     expect(url).toBe(
-      "https://res.cloudinary.com/testcloud/image/upload/e_grayscale,e_contrast:45,e_sharpen:80,e_vignette:40/seenbyus/evt1/img3"
+      "https://res.cloudinary.com/testcloud/image/upload/e_grayscale,e_contrast:20,e_sharpen:40/seenbyus/evt1/img3"
     )
   })
 })
