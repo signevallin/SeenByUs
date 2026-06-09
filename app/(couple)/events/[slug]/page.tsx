@@ -73,25 +73,24 @@ export default async function EventPage({ params }: Props) {
             </div>
           </div>
 
-          {revealed ? (
-            <Link
-              href={`/events/${event.slug}/album`}
-              className="block w-full text-center bg-stone-900 text-white rounded-lg py-3 text-sm font-semibold hover:bg-stone-800 transition-colors"
-            >
-              🎉 Öppna albumet →
-            </Link>
-          ) : (
-            <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
-              <p className="text-sm font-medium text-amber-800">Albumet öppnas</p>
-              <p className="text-sm text-amber-700 mt-0.5">
-                {new Date(event.revealedAt).toLocaleDateString("sv-SE")} kl{" "}
-                {new Date(event.revealedAt).toLocaleTimeString("sv-SE", {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  timeZone: "Europe/Stockholm",
-                })}
-              </p>
-            </div>
+          {/* Organiser always has access to their own album */}
+          <Link
+            href={`/events/${event.slug}/album`}
+            className="block w-full text-center bg-stone-900 text-white rounded-lg py-3 text-sm font-semibold hover:bg-stone-800 transition-colors"
+          >
+            {revealed ? "🎉 Öppna albumet →" : "👁 Förhandsgranska album →"}
+          </Link>
+
+          {!revealed && (
+            <p className="text-center text-xs text-stone-400 mt-3">
+              Gästerna ser albumet{" "}
+              {new Date(event.revealedAt).toLocaleDateString("sv-SE")} kl{" "}
+              {new Date(event.revealedAt).toLocaleTimeString("sv-SE", {
+                hour: "2-digit",
+                minute: "2-digit",
+                timeZone: "Europe/Stockholm",
+              })}
+            </p>
           )}
         </div>
       </div>
