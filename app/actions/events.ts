@@ -33,7 +33,7 @@ export async function createEvent(formData: FormData) {
   const dateStr = formData.get("date") as string
   const style = formData.get("style") as Style
 
-  if (!name || !dateStr || !["disposable", "vintage", "flash"].includes(style)) {
+  if (!name || !dateStr || !["nostalgia", "romance", "bw", "afterparty"].includes(style)) {
     throw new Error("Ogiltiga uppgifter")
   }
 

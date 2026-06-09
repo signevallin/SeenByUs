@@ -29,9 +29,10 @@ export default async function EventPage({ params }: Props) {
   const revealed = new Date() >= new Date(event.revealedAt)
 
   const styleLabels: Record<string, string> = {
-    disposable: "Disposable Camera",
-    vintage: "Vintage Film",
-    flash: "90s Flash",
+    nostalgia: "Nostalgia — 90s Retro",
+    romance: "Romance — Polaroid",
+    bw: "Classic B&W",
+    afterparty: "Afterparty",
   }
 
   return (

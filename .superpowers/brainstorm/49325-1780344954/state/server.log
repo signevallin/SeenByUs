@@ -1,0 +1,27 @@
+{"type":"server-started","port":61021,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:61021","screen_dir":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/content","state_dir":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/state"}
+{"type":"screen-added","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/content/reveal-timing.html"}
+{"type":"screen-updated","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/content/reveal-timing.html"}
+{"source":"user-event","type":"click","text":"A\n    \n      Nästa dag (äkta engångskamera)\n      Ingen ser något under evenemanget. Nästa morgon öppnar brudparet ett komplett, stylat album — som att hämta ut foton från framkallning. Skapar väntan och spänning. Gäster skjuter mer spontant eftersom ingen dömer i realtid.","choice":"nextday","id":null,"timestamp":1780345003234}
+{"type":"screen-added","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/content/guest-access.html"}
+{"type":"screen-updated","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/content/guest-access.html"}
+{"source":"user-event","type":"click","text":"A\n    \n      QR-kod → direkt in, bara ange namn\n      Skannar QR → skriver sitt förnamn → börjar ta bilder. Noll konton, noll lösenord. Lägsta möjliga friktion. Svårt att begränsa antal bilder per person (men vi kan begränsa per session/enhet).","choice":"qr-only","id":null,"timestamp":1780345067408}
+{"type":"screen-added","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/content/photo-limit.html"}
+{"type":"screen-updated","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/content/photo-limit.html"}
+{"source":"user-event","type":"click","text":"B\n    \n      20 bilder\n      Lagom — täcker hela bröllopsdagen (ceremoni, middag, dans) utan att kännas för knappt. Ger tillräcklig frihet men behåller begränsningskänslan.","choice":"20","id":null,"timestamp":1780345109873}
+{"type":"screen-added","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/content/styles.html"}
+{"type":"screen-updated","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/content/styles.html"}
+{"type":"screen-added","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/content/styles-v2.html"}
+{"type":"screen-updated","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/content/styles-v2.html"}
+{"source":"user-event","type":"click","text":"📷✓\n    Disposable CameraVarm, grynig, lite overexposed","choice":"disposable","id":null,"timestamp":1780345286851}
+{"source":"user-event","type":"click","text":"🎞️✓\n    Vintage FilmKodak-ton, faded, retro","choice":"film","id":null,"timestamp":1780345287899}
+{"source":"user-event","type":"click","text":"⚡✓\n    90s FlashLjust, bländande, paparazzi-känsla","choice":"flash","id":null,"timestamp":1780345288978}
+{"type":"screen-added","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/content/couple-auth.html"}
+{"type":"screen-updated","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/content/couple-auth.html"}
+{"source":"user-event","type":"click","text":"B\n    \n      E-post + lösenord\n      Klassisk registrering. Mer friktion vid signup men lättare att logga in igen. Supabase Auth hanterar det enkelt.","choice":"email-password","id":null,"timestamp":1780345368376}
+{"type":"screen-added","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/content/waiting.html"}
+{"type":"screen-updated","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/content/waiting.html"}
+{"type":"screen-added","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/content/flows.html"}
+{"type":"screen-updated","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/content/flows.html"}
+{"type":"screen-added","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/content/routes.html"}
+{"type":"screen-updated","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/49325-1780344954/content/routes.html"}
+{"type":"server-stopped","reason":"idle timeout"}

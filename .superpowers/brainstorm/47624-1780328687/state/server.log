@@ -1,0 +1,7 @@
+{"type":"server-started","port":60397,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:60397","screen_dir":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/47624-1780328687/content","state_dir":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/47624-1780328687/state"}
+{"type":"screen-added","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/47624-1780328687/content/tech-stack.html"}
+{"type":"screen-updated","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/47624-1780328687/content/tech-stack.html"}
+{"source":"user-event","type":"click","text":"C\n    \n      Next.js + Cloudinary + Prisma/Postgres\n      Next.js för allt. Cloudinary för bildlagring och AI-transformationer (har inbyggda filter). Postgres för data. Mer kontroll, något mer komplex setup.","choice":"nextjs-only","id":null,"timestamp":1780328794827}
+{"type":"screen-added","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/47624-1780328687/content/reveal-timing.html"}
+{"type":"screen-updated","file":"/Users/signevallin/Desktop/SeenByUs/.superpowers/brainstorm/47624-1780328687/content/reveal-timing.html"}
+{"type":"server-stopped","reason":"idle timeout"}

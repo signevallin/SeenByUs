@@ -1,0 +1,146 @@
+<h2>Välj 3 stilar för MVP</h2>
+<p class="subtitle">Klicka upp till 3 — dessa blir de stilpaket brudparet väljer mellan.</p>
+
+<style>
+  .style-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 12px;
+  }
+  .style-card {
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+    background: #fff;
+    user-select: none;
+  }
+  .style-card:hover { transform: scale(1.02); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .style-card.selected {
+    border-color: #6c63ff;
+    box-shadow: 0 0 0 3px rgba(108,99,255,0.2);
+    transform: scale(1.02);
+  }
+  .swatch {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Disposable — warm, grainy look */
+  .swatch.disposable {
+    background: linear-gradient(135deg, #d4a574 0%, #c49060 30%, #e8c49a 60%, #d4a070 100%);
+  }
+  .swatch.disposable::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+  }
+  /* Vintage Film — faded sepia */
+  .swatch.film {
+    background: linear-gradient(135deg, #c8b89a 0%, #b5a080 30%, #d4c4a8 70%, #c0aa88 100%);
+  }
+  /* Editorial B&W */
+  .swatch.bw {
+    background: linear-gradient(135deg, #1a1a1a 0%, #444 30%, #888 60%, #ccc 80%, #f0f0f0 100%);
+  }
+  /* 90s Flash — bright, blown out */
+  .swatch.flash {
+    background: linear-gradient(135deg, #fff9f0 0%, #fffde8 40%, #fff5e0 70%, #ffe8cc 100%);
+    border-bottom: 3px solid #ffe0b2;
+  }
+  /* Scandinavian Minimal — cool, desaturated */
+  .swatch.scandi {
+    background: linear-gradient(135deg, #e8eef2 0%, #d4dde6 40%, #c8d4de 70%, #dce6ee 100%);
+  }
+  /* Golden Hour — warm romantic */
+  .swatch.golden {
+    background: linear-gradient(135deg, #f4a035 0%, #e88c20 30%, #f0b050 60%, #e89030 100%);
+  }
+  .swatch-emoji { position: relative; z-index: 1; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2)); }
+  .label-area { padding: 10px 12px 12px; }
+  .label-area h3 { margin: 0 0 2px; font-size: 13px; font-weight: 700; }
+  .label-area p { margin: 0; font-size: 11px; color: #888; line-height: 1.4; }
+  .check-badge {
+    display: none;
+    position: absolute;
+    top: 6px; right: 6px;
+    background: #6c63ff;
+    color: #fff;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    font-size: 11px;
+    align-items: center;
+    justify-content: center;
+  }
+  .style-card.selected .check-badge { display: flex; }
+  .swatch { position: relative; }
+</style>
+
+<div class="style-grid" id="styleGrid">
+  <div class="style-card" data-choice="disposable" onclick="toggleStyle(this)">
+    <div class="swatch disposable"><span class="swatch-emoji">📷</span><div class="check-badge">✓</div></div>
+    <div class="label-area"><h3>Disposable Camera</h3><p>Varm, grynig, lite overexposed</p></div>
+  </div>
+  <div class="style-card" data-choice="film" onclick="toggleStyle(this)">
+    <div class="swatch film"><span class="swatch-emoji">🎞️</span><div class="check-badge">✓</div></div>
+    <div class="label-area"><h3>Vintage Film</h3><p>Kodak-ton, faded, retro</p></div>
+  </div>
+  <div class="style-card" data-choice="bw" onclick="toggleStyle(this)">
+    <div class="swatch bw"><span class="swatch-emoji">🖤</span><div class="check-badge">✓</div></div>
+    <div class="label-area"><h3>Editorial B&amp;W</h3><p>Svartvitt, hög kontrast, dokumentär</p></div>
+  </div>
+  <div class="style-card" data-choice="flash" onclick="toggleStyle(this)">
+    <div class="swatch flash"><span class="swatch-emoji">⚡</span><div class="check-badge">✓</div></div>
+    <div class="label-area"><h3>90s Flash</h3><p>Ljust, bländande, paparazzi-känsla</p></div>
+  </div>
+  <div class="style-card" data-choice="scandi" onclick="toggleStyle(this)">
+    <div class="swatch scandi"><span class="swatch-emoji">🌨️</span><div class="check-badge">✓</div></div>
+    <div class="label-area"><h3>Scandinavian Minimal</h3><p>Kylig, avsaturerad, ren</p></div>
+  </div>
+  <div class="style-card" data-choice="golden" onclick="toggleStyle(this)">
+    <div class="swatch golden"><span class="swatch-emoji">🌅</span><div class="check-badge">✓</div></div>
+    <div class="label-area"><h3>Golden Hour</h3><p>Varm, romantisk, sommarsol</p></div>
+  </div>
+</div>
+
+<p id="counter" style="margin-top:16px;font-size:13px;color:#999;">Välj exakt 3 stilar.</p>
+<button id="submitBtn" onclick="submitStyles()" style="margin-top:6px;padding:10px 28px;background:#6c63ff;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;opacity:0.4;pointer-events:none;">Klar →</button>
+
+<script>
+  const MAX = 3;
+  function toggleStyle(el) {
+    const already = el.classList.contains('selected');
+    const count = document.querySelectorAll('.style-card.selected').length;
+    if (already) {
+      el.classList.remove('selected');
+    } else if (count < MAX) {
+      el.classList.add('selected');
+    }
+    const newCount = document.querySelectorAll('.style-card.selected').length;
+    const btn = document.getElementById('submitBtn');
+    const counter = document.getElementById('counter');
+    counter.textContent = newCount === MAX
+      ? '3/3 valda — klicka "Klar" för att fortsätta.'
+      : `Välj exakt 3 — ${newCount} valda hittills.`;
+    btn.style.opacity = newCount === MAX ? '1' : '0.4';
+    btn.style.pointerEvents = newCount === MAX ? 'auto' : 'none';
+  }
+  function submitStyles() {
+    const selected = [...document.querySelectorAll('.style-card.selected')].map(el => el.dataset.choice);
+    if (selected.length !== 3) return;
+    selected.forEach(choice => {
+      if (window.__companion) window.__companion.recordClick(choice, choice);
+    });
+    document.getElementById('submitBtn').textContent = '✓ Skickat!';
+    document.getElementById('submitBtn').style.background = '#4caf50';
+  }
+</script>

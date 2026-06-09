@@ -1,0 +1,26 @@
+<h2>Hur loggar brudparet in?</h2>
+<p class="subtitle">De behöver skapa eventet, välja stil — och komma tillbaka nästa dag för att se albumet.</p>
+
+<div class="options">
+  <div class="option" data-choice="magic-link" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Magic link via e-post</h3>
+      <p>Anger sin e-post → får en länk → klickar → inloggad. Inga lösenord. Enklast att bygga för MVP. Fungerar bra när de ska komma tillbaka nästa dag.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="email-password" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>E-post + lösenord</h3>
+      <p>Klassisk registrering. Mer friktion vid signup men lättare att logga in igen. Supabase Auth hanterar det enkelt.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="google" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Google / Apple Sign-in</h3>
+      <p>En klick, inget lösenord att komma ihåg. Mest friktionsfritt men kräver OAuth-setup. Bra om målgruppen är tech-bekväm.</p>
+    </div>
+  </div>
+</div>

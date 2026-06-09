@@ -32,9 +32,10 @@ model Event {
 }
 
 enum Style {
-  disposable
-  vintage
-  flash
+  nostalgia
+  romance
+  bw
+  afterparty
 }
 
 model Guest {

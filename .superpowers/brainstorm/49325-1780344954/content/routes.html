@@ -1,0 +1,99 @@
+<h2>Sidkarta</h2>
+<p class="subtitle">Alla routes i MVP — minimalt, ingen onödig sida.</p>
+
+<style>
+  .route-section {
+    margin-bottom: 20px;
+  }
+  .route-section-title {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 8px;
+  }
+  .route-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .route-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: #f8f8fc;
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+  .route-row.guest-row { background: #fff8f5; }
+  .route-path {
+    font-family: monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: #6c63ff;
+    min-width: 200px;
+    flex-shrink: 0;
+  }
+  .route-path.guest { color: #e87040; }
+  .route-desc {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .route-desc strong { color: #333; }
+</style>
+
+<div class="route-section">
+  <div class="route-section-title">💍 Brudparet (autentiserat)</div>
+  <div class="route-list">
+    <div class="route-row">
+      <div class="route-path">/</div>
+      <div class="route-desc"><strong>Landningssida</strong> — kort pitch, CTA till signup. Enkel, ingen nav.</div>
+    </div>
+    <div class="route-row">
+      <div class="route-path">/signup</div>
+      <div class="route-desc"><strong>Registrering</strong> — e-post + lösenord. Skickas direkt till dashboard.</div>
+    </div>
+    <div class="route-row">
+      <div class="route-path">/login</div>
+      <div class="route-desc"><strong>Inloggning</strong> — e-post + lösenord.</div>
+    </div>
+    <div class="route-row">
+      <div class="route-path">/dashboard</div>
+      <div class="route-desc"><strong>Översikt</strong> — lista med events. Knapp: "Skapa nytt event". Visar status (pågår / album klart).</div>
+    </div>
+    <div class="route-row">
+      <div class="route-path">/events/new</div>
+      <div class="route-desc"><strong>Skapa event</strong> — namn, datum, välj stil. Genererar QR-kod direkt.</div>
+    </div>
+    <div class="route-row">
+      <div class="route-path">/events/[slug]</div>
+      <div class="route-desc"><strong>Event-vy</strong> — QR-kod (stor, utskriftsvänlig), antal uppladdade bilder, countdown till albumöppning.</div>
+    </div>
+    <div class="route-row">
+      <div class="route-path">/events/[slug]/album</div>
+      <div class="route-desc"><strong>Album</strong> — alla bilder stylat via Cloudinary. Ladda ner som ZIP. Synlig först efter revealedAt.</div>
+    </div>
+  </div>
+</div>
+
+<div class="route-section">
+  <div class="route-section-title">🎉 Gästen (ingen inloggning)</div>
+  <div class="route-list">
+    <div class="route-row guest-row">
+      <div class="route-path guest">/e/[slug]</div>
+      <div class="route-desc"><strong>Eventingång</strong> — välkomstskärm, ange namn, "Börja ta bilder"-knapp.</div>
+    </div>
+    <div class="route-row guest-row">
+      <div class="route-path guest">/e/[slug]/camera</div>
+      <div class="route-desc"><strong>Kameravy</strong> — stor "📷 Ta bild"-knapp, räknare "X av 20 bilder kvar". Upload direkt till Cloudinary. Ingen preview.</div>
+    </div>
+    <div class="route-row guest-row">
+      <div class="route-path guest">/e/[slug]/done</div>
+      <div class="route-desc"><strong>Klart-skärm</strong> — "Dina bilder framkallas. Albumet öppnas imorgon." Ingen mer interaktion.</div>
+    </div>
+  </div>
+</div>
+
+<p style="margin-top:12px;font-size:13px;color:#888;">Svara i terminalen — ser sidkartan rätt ut?</p>

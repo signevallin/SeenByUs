@@ -32,18 +32,11 @@ export default async function AlbumPage({ params }: Props) {
   const publicIds = event.photos.map((p) => p.cloudinaryPublicId)
   const zipUrl = publicIds.length > 0 ? buildZipUrl(publicIds, event.style) : null
 
-  // Debug: log generated URLs to Vercel runtime logs
-  if (event.photos.length > 0) {
-    const { buildCloudinaryUrl } = await import("@/lib/transforms")
-    console.log("[album] style:", event.style)
-    console.log("[album] first photo publicId:", event.photos[0].cloudinaryPublicId)
-    console.log("[album] first photo URL:", buildCloudinaryUrl(event.photos[0].cloudinaryPublicId, event.style))
-  }
-
   const styleLabels: Record<string, string> = {
-    disposable: "Disposable Camera",
-    vintage: "Vintage Film",
-    flash: "90s Flash",
+    nostalgia: "Nostalgia — 90s Retro",
+    romance: "Romance — Polaroid",
+    bw: "Classic B&W",
+    afterparty: "Afterparty",
   }
 
   return (
@@ -69,7 +62,7 @@ export default async function AlbumPage({ params }: Props) {
           )}
         </div>
 
-        <AlbumGrid photos={event.photos} style={event.style} />
+        <AlbumGrid photos={event.photos} style={event.style} eventDate={event.date} />
       </div>
     </div>
   )

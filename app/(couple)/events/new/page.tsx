@@ -2,9 +2,10 @@ import { createEvent } from "@/app/actions/events"
 
 export default function NewEventPage() {
   const styles = [
-    { value: "disposable", label: "Disposable Camera", desc: "Varm, grynig, retro" },
-    { value: "vintage", label: "Vintage Film", desc: "Kodak-ton, faded" },
-    { value: "flash", label: "90s Flash", desc: "Ljust, paparazzi-känsla" },
+    { value: "nostalgia", label: "Nostalgia", desc: "90s Retro — Fujifilm/Kodak-känsla" },
+    { value: "romance", label: "Romance", desc: "Polaroid — mjuk, varm och drömmig" },
+    { value: "bw", label: "Classic B&W", desc: "Tidlös film — djup svärta, hög kontrast" },
+    { value: "afterparty", label: "Afterparty", desc: "Den rökiga klubben — mörk och dramatisk" },
   ]
 
   return (

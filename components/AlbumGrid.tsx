@@ -11,9 +11,10 @@ interface Photo {
 interface AlbumGridProps {
   photos: Photo[]
   style: Style
+  eventDate?: Date
 }
 
-export function AlbumGrid({ photos, style }: AlbumGridProps) {
+export function AlbumGrid({ photos, style, eventDate }: AlbumGridProps) {
   if (photos.length === 0) {
     return (
       <div className="text-center py-20 text-stone-400">
@@ -26,7 +27,7 @@ export function AlbumGrid({ photos, style }: AlbumGridProps) {
   return (
     <div className="columns-2 md:columns-3 gap-2 space-y-2">
       {photos.map((photo) => {
-        const url = buildCloudinaryUrl(photo.cloudinaryPublicId, style)
+        const url = buildCloudinaryUrl(photo.cloudinaryPublicId, style, eventDate)
         return (
           <div key={photo.id} className="break-inside-avoid relative group">
             {/* unoptimized so the Cloudinary transformation URL is fetched as-is */}

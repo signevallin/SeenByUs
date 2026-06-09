@@ -1,0 +1,26 @@
+<h2>Hur tar sig gäster in?</h2>
+<p class="subtitle">Friktion = färre gäster som faktiskt använder appen. Men noll friktion = svårare att hantera spam/gränser.</p>
+
+<div class="options">
+  <div class="option" data-choice="qr-only" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>QR-kod → direkt in, bara ange namn</h3>
+      <p>Skannar QR → skriver sitt förnamn → börjar ta bilder. Noll konton, noll lösenord. Lägsta möjliga friktion. Svårt att begränsa antal bilder per person (men vi kan begränsa per session/enhet).</p>
+    </div>
+  </div>
+  <div class="option" data-choice="phone" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>QR-kod → mobilnummer → OTP</h3>
+      <p>Skannar QR → anger telefonnummer → får SMS-kod. Identifierar unika gäster, möjliggör "X bilder per person". Lite mer friktion — kräver att folk skriver mobilnummer på festen.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="invite" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Personliga inbjudningslänkar</h3>
+      <p>Brudparet lägger in gästlistan → varje gäst får en unik länk via SMS/mail. Mest kontroll, snyggast "du är inbjuden"-upplevelse. Mer setup för brudparet, och gäster kan tappa länken.</p>
+    </div>
+  </div>
+</div>
