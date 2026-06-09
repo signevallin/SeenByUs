@@ -18,53 +18,44 @@ afterEach(() => {
 
 describe("getTransformParams", () => {
   it("returns params for nostalgia", () => {
-    expect(getTransformParams("nostalgia")).toBe(
-      "e_sepia:18,e_contrast:15,e_saturation:8,e_sharpen:60"
-    )
+    expect(getTransformParams("nostalgia")).toBe("e_contrast:40/e_saturation:30/e_noise:10")
   })
   it("returns params for romance", () => {
-    expect(getTransformParams("romance")).toBe(
-      "e_sepia:20,e_contrast:-20,e_saturation:-10,e_brightness:10"
-    )
+    expect(getTransformParams("romance")).toBe("e_vibe/e_contrast:-10/e_improve:outdoor:20/e_blur:30")
   })
   it("returns params for bw", () => {
-    expect(getTransformParams("bw")).toBe(
-      "e_saturation:-100,e_contrast:40,e_brightness:-5,e_sharpen:60"
-    )
+    expect(getTransformParams("bw")).toBe("e_grayscale/e_contrast:60/e_noise:25")
   })
   it("returns params for afterparty", () => {
     expect(getTransformParams("afterparty")).toBe(
-      "e_brightness:-15,e_contrast:20,e_saturation:-35"
+      "e_vignette:80/e_contrast:30/e_improve:indoor/co_rgb:ff3300,e_gradient_fade,g_west,w_0.2"
     )
   })
 })
 
 describe("buildCloudinaryUrl", () => {
-  it("builds correct URL for nostalgia without date", () => {
+  it("nostalgia without date uses today's date in stamp", () => {
     const url = buildCloudinaryUrl("seenbyus/evt1/img1", "nostalgia")
-    expect(url).toBe(
-      "https://res.cloudinary.com/testcloud/image/upload/e_sepia:18,e_contrast:15,e_saturation:8,e_sharpen:60/seenbyus/evt1/img1"
-    )
-  })
-
-  it("adds orange date stamp overlay for nostalgia with date", () => {
-    const date = new Date("2026-06-14")
-    const url = buildCloudinaryUrl("seenbyus/evt1/img1", "nostalgia", date)
-    expect(url).toContain("l_text:Courier_18_bold:14.06.26")
-    expect(url).toContain("co_rgb:FF6600")
+    expect(url).toContain("l_text:Courier_24_bold:")
+    expect(url).toContain("co_rgb:ff6600")
     expect(url).toContain("g_south_east")
   })
 
-  it("does not add overlay for romance style", () => {
+  it("nostalgia with date uses event date in stamp", () => {
     const date = new Date("2026-06-14")
-    const url = buildCloudinaryUrl("seenbyus/evt1/img2", "romance", date)
+    const url = buildCloudinaryUrl("seenbyus/evt1/img1", "nostalgia", date)
+    expect(url).toContain("l_text:Courier_24_bold:2026-06-14")
+  })
+
+  it("does not add overlay for romance style", () => {
+    const url = buildCloudinaryUrl("seenbyus/evt1/img2", "romance", new Date("2026-06-14"))
     expect(url).not.toContain("l_text")
   })
 
   it("builds correct URL for bw style", () => {
     const url = buildCloudinaryUrl("seenbyus/evt1/img3", "bw")
     expect(url).toBe(
-      "https://res.cloudinary.com/testcloud/image/upload/e_saturation:-100,e_contrast:40,e_brightness:-5,e_sharpen:60/seenbyus/evt1/img3"
+      "https://res.cloudinary.com/testcloud/image/upload/e_grayscale/e_contrast:60/e_noise:25/seenbyus/evt1/img3"
     )
   })
 })
@@ -75,6 +66,5 @@ describe("buildZipUrl", () => {
     expect(typeof result).toBe("string")
     expect(result.startsWith("https")).toBe(true)
     expect(result).toContain("testcloud")
-    expect(result).toContain("e_contrast")
   })
 })

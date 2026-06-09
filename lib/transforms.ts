@@ -2,14 +2,14 @@ import { v2 as cloudinary } from "cloudinary"
 import { Style } from "@prisma/client"
 
 const TRANSFORM_PARAMS: Record<Style, string> = {
-  // Nostalgia — 90s Fujifilm/Kodak: subtle warmth, punchy but not extreme
-  nostalgia: "e_sepia:18,e_contrast:15,e_saturation:8,e_sharpen:60",
-  // Romance — Polaroid: soft, faded, warm, low contrast
-  romance: "e_sepia:20,e_contrast:-20,e_saturation:-10,e_brightness:10",
-  // Classic B&W — Tidlös film: full desaturation, deep blacks, sharp
-  bw: "e_saturation:-100,e_contrast:40,e_brightness:-5,e_sharpen:60",
-  // Afterparty — Den rökiga klubben: dark, contrasty, desaturated
-  afterparty: "e_brightness:-15,e_contrast:20,e_saturation:-35",
+  // Nostalgia — 90s Fujifilm/Kodak (date stamp added dynamically in buildCloudinaryUrl)
+  nostalgia: "e_contrast:40/e_saturation:30/e_noise:10",
+  // Romance — Polaroid: soft, dreamy, warm glow
+  romance: "e_vibe/e_contrast:-10/e_improve:outdoor:20/e_blur:30",
+  // Classic B&W — Tidlös film: deep blacks, high contrast, grain
+  bw: "e_grayscale/e_contrast:60/e_noise:25",
+  // Afterparty — Den rökiga klubben: vignette, indoor, warm light leak
+  afterparty: "e_vignette:80/e_contrast:30/e_improve:indoor/co_rgb:ff3300,e_gradient_fade,g_west,w_0.2",
 }
 
 export function getTransformParams(style: Style): string {
@@ -21,17 +21,15 @@ export function buildCloudinaryUrl(publicId: string, style: Style, eventDate?: D
   const cloud =
     process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ??
     process.env.CLOUDINARY_CLOUD_NAME
-  const params = getTransformParams(style)
+  let transformations = TRANSFORM_PARAMS[style]
 
-  let transformations = params
-
-  // Orange date stamp in corner for Nostalgia — classic Fujifilm/Kodak look
-  if (style === "nostalgia" && eventDate) {
-    const dd = String(eventDate.getDate()).padStart(2, "0")
-    const mm = String(eventDate.getMonth() + 1).padStart(2, "0")
-    const yy = String(eventDate.getFullYear()).slice(-2)
-    const dateStr = `${dd}.${mm}.${yy}`
-    transformations += `/l_text:Courier_18_bold:${dateStr},co_rgb:FF6600,g_south_east,x_15,y_15`
+  // Nostalgia: append orange date stamp — format YYYY-MM-DD like a Fujifilm timestamp
+  if (style === "nostalgia") {
+    const date = eventDate ?? new Date()
+    const yyyy = date.getFullYear()
+    const mm = String(date.getMonth() + 1).padStart(2, "0")
+    const dd = String(date.getDate()).padStart(2, "0")
+    transformations += `/l_text:Courier_24_bold:${yyyy}-${mm}-${dd},co_rgb:ff6600,g_south_east,x_20,y_20`
   }
 
   return `https://res.cloudinary.com/${cloud}/image/upload/${transformations}/${publicId}`
